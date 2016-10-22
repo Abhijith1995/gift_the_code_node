@@ -1,9 +1,11 @@
 var express = require('express');
 var _ = require('lodash');
+var moment = require('moment');
 
 var app = express();
-var transactions = require("./data/transactions").data
 
+const transactions = require("./data/transactions").data
+const dateFormat = "YYYY-MM-DDs"
 app.set('port', (process.env.PORT || 5000));
 
 app.get('/', function(request, response) {
@@ -12,7 +14,24 @@ app.get('/', function(request, response) {
 });
 
 app.get('/users/:userId', function(request, response) {
-  user_transactions = _.filter(transactions, {user_id: request.params.userId});
+  let filter_object = {
+    user_id: request.params.userId,
+  }
+  if(request.query.category && request.query.subcategory){
+    filter_object["category"] = request.query.category;
+    filter_object["subcategory"] = request.query.subcategory;
+  }
+  let user_transactions = _.filter(transactions, filter_object);
+
+  if(request.query.fromDate && request.query.toDate){
+    fromDate = moment(request.query.fromDate, dateFormat);
+    toDate = moment(request.query.toDate, dateFormat);
+
+    user_transactions = _.filter(user_transactions, function(transaction){
+      return moment(transaction.date).isBetween(fromDate, toDate);
+    });
+  }
+
   response.json(user_transactions);
 });
 

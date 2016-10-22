@@ -22,6 +22,7 @@
   "homepage": "https://github.com/AbhijithRamalingam/gift_the_code_node#readme",
   "dependencies": {
     "express": "^4.14.0",
-    "lodash": "^4.16.4"
+    "lodash": "^4.16.4",
+    "moment": "^2.15.1"
   }
 }

@@ -5,7 +5,7 @@ module.exports = {
       category: "INCOME",
       subcategory: "Employment",
       amount: 900,
-      date: new Date(),
+      date: "2015-09-10",
       type: "INCOME"
     },
     {
@@ -13,7 +13,7 @@ module.exports = {
       category: "HOUSING",
       subcategory: "Rent",
       amount: 500,
-      date: new Date(),
+      date: "2015-09-10",
       type: "EXPENSE"
     },
     {
@@ -21,7 +21,7 @@ module.exports = {
       category: "INCOME",
       subcategory: "Employment",
       amount: 1200,
-      date: new Date(2016,9,1),
+      date: "2015-09-10",
       type: "INCOME"
     },
     {
@@ -29,7 +29,7 @@ module.exports = {
       category: "HOUSING",
       subcategory: "Rent",
       amount: 800,
-      date: new Date(2016,9,15),
+      date: "2015-09-10",
       type: "EXPENSE"
     },
     {
@@ -37,7 +37,7 @@ module.exports = {
       category: "HOUSING",
       subcategory: "HEAT",
       amount: 100,
-      date: new Date(2016,8,19),
+      date: "2016-09-10",
       type: "EXPENSE"
     },
   ]
