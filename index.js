@@ -17,9 +17,13 @@ app.get('/users/:userId', function(request, response) {
   let filter_object = {
     user_id: request.params.userId,
   }
+  // Allow for category wide search
+  if(request.query.category){
+    filter_object["category"] = request.query.category
+  }
+  // Allow for subcategory search
   if(request.query.category && request.query.subcategory){
-    filter_object["category"] = request.query.category;
-    filter_object["subcategory"] = request.query.subcategory;
+    filter_object["subcategory"] = request.query.subcategory
   }
   let user_transactions = _.filter(transactions, filter_object);
 
