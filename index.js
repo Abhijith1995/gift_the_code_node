@@ -31,7 +31,8 @@ app.get('/users', function(request, response) {
   if(request.query.category && request.query.subcategory){
     filter_object["subcategory"] = request.query.subcategory
   }
-  let user_transactions = _.filter(transactions, filter_object);
+
+  var user_transactions = _.filter(transactions, filter_object);
 
   if(request.query.fromDate && request.query.toDate){
     fromDate = moment(request.query.fromDate, dateFormat);
