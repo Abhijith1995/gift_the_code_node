@@ -1,0 +1,26 @@
+{
+  "name": "gift_the_code_node",
+  "version": "1.0.0",
+  "description": "The node server for stuff",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AbhijithRamalingam/gift_the_code_node.git"
+  },
+  "keywords": [
+    "nodejs",
+    "heroku"
+  ],
+  "author": "Abhijith Ramalingam",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AbhijithRamalingam/gift_the_code_node/issues"
+  },
+  "homepage": "https://github.com/AbhijithRamalingam/gift_the_code_node#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
