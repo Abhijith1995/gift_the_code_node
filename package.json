@@ -21,6 +21,8 @@
   },
   "homepage": "https://github.com/AbhijithRamalingam/gift_the_code_node#readme",
   "dependencies": {
+    "body-parser": "^1.15.2",
+    "cors": "^2.8.1",
     "express": "^4.14.0",
     "lodash": "^4.16.4",
     "moment": "^2.15.1"

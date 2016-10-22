@@ -1,11 +1,17 @@
 var express = require('express');
 var _ = require('lodash');
 var moment = require('moment');
+var bodyParser = require('body-parser')
+var cors = require('cors');
 
 var app = express();
 
 const transactions = require("./data/transactions").data
 const dateFormat = "YYYY-MM-DDs"
+
+app.use(cors());
+app.use(bodyParser.json({type:'*/*'}));
+
 app.set('port', (process.env.PORT || 5000));
 
 app.get('/', function(request, response) {
@@ -13,9 +19,9 @@ app.get('/', function(request, response) {
   response.send("Hello Kangze");
 });
 
-app.get('/users/:userId', function(request, response) {
+app.get('/users', function(request, response) {
   let filter_object = {
-    user_id: request.params.userId,
+    user_id: request.query.userId,
   }
   // Allow for category wide search
   if(request.query.category){
@@ -40,5 +46,5 @@ app.get('/users/:userId', function(request, response) {
 });
 
 app.listen(app.get('port'), function() {
-  console.log('Node app is running on port', app.get('port'));
+  console.log('Node app is running on port ', app.get('port'));
 });
