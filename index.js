@@ -14,14 +14,14 @@ app.get('/', function(request, response) {
 });
 
 app.get('/users/:userId', function(request, response) {
-  let filter_object = {
+  var filter_object = {
     user_id: request.params.userId,
   }
   if(request.query.category && request.query.subcategory){
     filter_object["category"] = request.query.category;
     filter_object["subcategory"] = request.query.subcategory;
   }
-  let user_transactions = _.filter(transactions, filter_object);
+  var user_transactions = _.filter(transactions, filter_object);
 
   if(request.query.fromDate && request.query.toDate){
     fromDate = moment(request.query.fromDate, dateFormat);
