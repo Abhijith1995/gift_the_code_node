@@ -28,10 +28,11 @@ app.get('/', function(request, response) {
   // response.send("Hello Kangze");
 });
 
-app.get('/:userId/transactions', function(request, response) {
-
+app.get('/transactions', function(request, response) {
+  console.log("Hit the transactions route")
+  console.log(request.query)
   let filter_object = {
-    user_id: request.params.userId,
+    user_id: request.query.userId,
   }
   // Allow for category wide search
   if(request.query.category){
@@ -54,6 +55,23 @@ app.get('/:userId/transactions', function(request, response) {
   }
   response.json(user_transactions);
 });
+
+app.get('/users/:userId', function(request, response){
+  let filter_object = {
+    _id: request.params.userId
+  }
+  response.json({
+    user_id: "foobar",
+    is_onboarded: true,
+    current_balance: 100,
+    sign_up_date: new Date(),
+    categories: [
+      {category_id: "3sifjsf", category_name: "Living Expenses", subcategories: ["rent", "insurance", "food"]},
+      {category_id: "asdfyul", category_name: "Transportation", subcategories: ["public transit", "taxi"]},
+      {category_id: "asdkfhd", category_name: "Leisure", subcategories: ["gifts", "alcohol"]}
+    ]
+  })
+})
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port ', app.get('port'));
