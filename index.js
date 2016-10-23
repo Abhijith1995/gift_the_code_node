@@ -65,12 +65,16 @@ MongoClient.connect(url, function(err, db) {
     var categories_collection = db.collection(collections.categories);
 
     users_collection.find(filter_object).toArray(function(err, users) {
-      var user = users[0];
       assert.equal(err, null);
-      categories_collection.find({}).toArray(function(err, categories){
-          user["categories"] = categories;
-          response.send(user);
-      });
+      var user = users[0];
+      if(user !== undefined){
+        categories_collection.find({}).toArray(function(err, categories){
+            user["categories"] = categories;
+            response.json(user);
+        });
+      } else {
+        response.json([]);
+      }
     });
   });
 });
