@@ -3,11 +3,16 @@ var _ = require('lodash');
 var moment = require('moment');
 var bodyParser = require('body-parser')
 var cors = require('cors');
+var mongoose = require('mongoose');
 
 var app = express();
 
 const transactions = require("./data/transactions").data
-const dateFormat = "YYYY-MM-DDs"
+const Trxn = require('./models/trxn_model');
+
+const dateFormat = "YYYY-MM-DD"
+
+mongoose.connect("52.205.251.79:27017/budget");
 
 app.use(cors());
 app.use(bodyParser.json({type:'*/*'}));
@@ -15,13 +20,18 @@ app.use(bodyParser.json({type:'*/*'}));
 app.set('port', (process.env.PORT || 5000));
 
 app.get('/', function(request, response) {
+  Trxn.find({}, function(err, transactions){
+    response.send(transactions);
+  });
+
   // response.render('pages/index');
-  response.send("Hello Kangze");
+  // response.send("Hello Kangze");
 });
 
-app.get('/users', function(request, response) {
+app.get('/:userId/transactions', function(request, response) {
+
   let filter_object = {
-    user_id: request.query.userId,
+    user_id: request.params.userId,
   }
   // Allow for category wide search
   if(request.query.category){
@@ -42,7 +52,6 @@ app.get('/users', function(request, response) {
       return moment(transaction.date).isBetween(fromDate, toDate);
     });
   }
-
   response.json(user_transactions);
 });
 
