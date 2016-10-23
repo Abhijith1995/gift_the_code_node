@@ -64,7 +64,8 @@ MongoClient.connect(url, function(err, db) {
     var users_collection = db.collection(collections.transactions);
     var categories_collection = db.collection(collections.categories);
 
-    users_collection.find(filter_object).toArray(function(err, [user]) {
+    users_collection.find(filter_object).toArray(function(err, users) {
+      var user = users[0];
       assert.equal(err, null);
       categories_collection.find({}).toArray(function(err, categories){
           user["categories"] = categories;
