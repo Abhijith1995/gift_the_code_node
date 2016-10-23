@@ -26,7 +26,7 @@ MongoClient.connect(url, function(err, db) {
   app.get('/transactions', function(request, response) {
     var collection = db.collection(collections.transactions);
 
-    let filter_object = {
+    var filter_object = {
       user_id: request.query.userId,
     }
     // Allow for category wide search
@@ -57,7 +57,7 @@ MongoClient.connect(url, function(err, db) {
   });
 
   app.get('/users/:userId', function(request, response){
-    let filter_object = {
+    var filter_object = {
       user_id: request.params.userId
     }
 
